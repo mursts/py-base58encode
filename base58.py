@@ -11,7 +11,9 @@ class Base58:
 
     def _is_numeric(self, num):
         matcher = re.compile(r'^[\d]*$')
-        return matcher.match(str(num))
+        if matcher.match(str(num)) is None:
+            return False
+        return True
 
     def _is_empty(self, value):
         if value is None or value == '':
@@ -19,7 +21,7 @@ class Base58:
         return False
 
     def encode(self, value):
-        if self._is_numeric(value) is None:
+        if not self._is_numeric(value):
             raise ValueError('value is Integer or IntegerString Only')
         encoded = ''
         value = int(value)
