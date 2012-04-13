@@ -19,7 +19,7 @@ class Base58:
         return False
 
     def encode(self, value):
-        if self._is_empty(value) or self._is_numeric(value) is None:
+        if self._is_numeric(value) is None:
             raise ValueError('value is Integer or IntegerString Only')
         encoded = ''
         value = int(value)
@@ -49,5 +49,3 @@ if __name__ == '__main__':
     encoded = b58.encode(args[1])
     print 'encoded:{0}'.format(encoded)
     print 'decoded:{0}'.format(b58.decode(encoded))
-    print b58.decode('asdfghjk')
-    print b58.decode('1023456789')
